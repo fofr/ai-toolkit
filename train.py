@@ -37,6 +37,8 @@ def train(
     os.system(f"sed -i 's/name_or_path: 'black-forest-labs/FLUX.1-dev'/name_or_path: {model_name}/' config/replicate.yml")
     # replace the 'steps: 1000' value in the config file
     os.system(f"sed -i 's/steps: 1000/steps: {steps}/' config/replicate.yml")
+    # replace the 'save_every: 1001' value in the config file
+    os.system(f"sed -i 's/save_every: 1001/save_every: {steps+1}/' config/replicate.yml")
     # replace the 'lr: 4e-4' value in the config file
     os.system(f"sed -i 's/lr: 4e-4/lr: {learning_rate}/' config/replicate.yml")
     # replace the 'batch_size: 1' value in the config file
@@ -68,6 +70,8 @@ def train(
 
     # Zip up the output folder
     output_lora = "output/flux_train_replicate"
+    # copy license file to output folder
+    os.system(f"cp lora-license.md {output_lora}/README.md")
     output_zip_path = "/tmp/output.zip"
     os.system(f"zip -r {output_zip_path} {output_lora}")
 
