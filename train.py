@@ -1,11 +1,14 @@
 # Prediction interface for Cog ⚙️
 # https://cog.run/python
 
-from cog import Input, Path, Secret
+from cog import BaseModel, Input, Path, Secret
 import os
 import subprocess
 from zipfile import ZipFile
 from huggingface_hub import HfApi
+
+class TrainingOutput(BaseModel):
+    weights: Path
 
 # Run in lucataco/sandbox2
 def train(
@@ -14,14 +17,14 @@ def train(
     ),
     model_name: str = Input(description="Model name", default="black-forest-labs/FLUX.1-dev"),
     hf_token: Secret = Input(description="HuggingFace token to use for accessing model"),
-    steps: int = Input(description="Number of training steps", default=4000),
+    steps: int = Input(description="Number of training steps. Recommended range 500-4000", ge=10, le=4000, default=1000),
     learning_rate: float = Input(description="Learning rate", default=4e-4),
     batch_size: int = Input(description="Batch size", default=1),
     resolution: str = Input(description="Image resolutions for training", default="512,768,1024"),
     lora_linear: int = Input(description="LoRA linear value", default=16),
     lora_linear_alpha: int = Input(description="LoRA linear alpha value", default=16),
     repo_id: str = Input(description="Enter HuggingFace repo id to upload LoRA to HF. Will return zip file if left empty.Ex: lucataco/flux-dev-lora", default=None),
-) -> Path:
+) -> TrainingOutput:
     """Run a single prediction on the model"""
     print("Starting prediction")
     # Cleanup previous runs
@@ -76,4 +79,4 @@ def train(
             repo_type="model",
             use_auth_token=hf_token
         )
-    return Path(output_zip_path)
+    return TrainingOutput(weights=Path(output_zip_path))
