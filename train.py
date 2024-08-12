@@ -75,6 +75,9 @@ def train(
     output_zip_path = "/tmp/output.zip"
     os.system(f"zip -r {output_zip_path} {output_lora}")
 
+    # cleanup input_images folder
+    os.system(f"rm -rf {input_dir}")
+
     if hf_token is not None and repo_id is not None:
         api = HfApi()
         api.upload_folder(
