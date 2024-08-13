@@ -5,10 +5,11 @@ from cog import BasePredictor, Input, Path
 import os
 from typing import Optional
 
+
 class Predictor(BasePredictor):
     def setup(self):
         """Load the model into memory to make running multiple predictions efficient"""
-            
+
     def predict(
         self,
         prompt: str = Input(
