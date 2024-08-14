@@ -7,6 +7,11 @@ hard to keep up with all of them.
 
 ## Support my work
 
+<a href="https://glif.app" target="_blank">
+<img alt="glif.app" src="https://raw.githubusercontent.com/ostris/ai-toolkit/main/assets/glif.svg?v=1" width="256" height="auto">
+</a>
+
+
 My work on this project would not be possible without the amazing support of [Glif](https://glif.app/) and everyone on the 
 team. If you want to support me, support Glif. [Join the site](https://glif.app/), 
 [Join us on Discord](https://discord.com/invite/nuR9zZ2nsh), [follow us on Twitter](https://x.com/heyglif)
@@ -95,7 +100,7 @@ Coming very soon. Getting base out then will have a notebook that makes all that
 
 Datasets generally need to be a folder containing images and associated text files. Currently, the only supported
 formats are jpg, jpeg, and png. Webp currently has issues. The text files should be named the same as the images
-but with a `.txt` extension. For example `image22.jpg` and `image2.txt`. The text file should contain only the caption.
+but with a `.txt` extension. For example `image2.jpg` and `image2.txt`. The text file should contain only the caption.
 You can add the word `[trigger]` in the caption file and if you have `trigger_word` in your config, it will be automatically
 replaced. 
 
