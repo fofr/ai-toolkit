@@ -17,7 +17,7 @@ config:
         max_step_saves_to_keep: 1 # how many intermittent saves to keep
       datasets:
         - folder_path: "input_images"
-          caption_ext: "filename"
+          caption_ext: "txt"
           caption_dropout_rate: 0.05  # will drop out the caption 5% of time
           shuffle_tokens: false  # shuffle caption order, split by commas
           cache_latents_to_disk: true  # leave this true unless you know what you're doing
